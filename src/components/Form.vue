@@ -1,11 +1,20 @@
 <template>
+<div>
 <form @submit.prevent="handleSubmit">
   <label>
       Username:
-      <input type="username" v-model="user.username"/>
+      <input type="username" v-model="searchTerm"/>
     </label>
   <button type="submit">Submit</button>
 </form>
+<div>
+  <ul>
+    <li v-for="item in imageURL" :key=item>
+      {{item}}
+    </li>
+  </ul>
+</div>
+</div>
 </template>
 <script>
 import axios from "axios";
@@ -13,18 +22,16 @@ import axios from "axios";
 export default {
   data() {
     return {
-      user: {
-        username: ""
-      }
+      searchTerm: "",
+      imageURL: []
     };
   },
   methods: {
     handleSubmit() {
-      console.log(this.user.username);
+      console.log(this.searchTerm);
       axios
-        .get(`http://localhost:3000/users/${this.user.username}`)
+        .get(`http://localhost:3000/gif/${this.searchTerm}`)
         .then(response => {
-          this.loading = false;
           console.log(response);
         });
     }
