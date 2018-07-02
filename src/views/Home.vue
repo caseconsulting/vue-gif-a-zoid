@@ -1,7 +1,9 @@
 <template>
   <div class="home">
-    <img src="../assets/logo-banner.gif"/>
-    <HelloWorld msg="Case Consulting TSheets Portal"/>
+    <h1>"Gif-O-Zoid Logo Here"</h1>
+    <br>
+    <h2>Try to Request Some Gifs...</h2>
+    <br>
     <Form/>
   </div>
 </template>

@@ -1,18 +1,25 @@
 <template>
 <div>
-<form @submit.prevent="search">
-  <label>
-      Username:
-      <input type="username" v-model="searchTerm"/>
-    </label>
-  <button type="submit">Submit</button>
-</form>
-<button @click="random" type="button">Random</button>
-<div>
-  <li style="list-style: none;" v-for="url in imageURL" :key=url>
-    <img  class="gif" :src="url"/>
-  </li>
-</div>
+  <form @submit.prevent="search">
+    <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="6">
+      <label>
+          <vs-input vs-label-placeholder="Search GIFs" v-model="searchTerm" />
+      </label>
+      <vs-button vs-color="primary" vs-type="relief" :disabled="!searchTerm">Submit
+      </vs-button>
+    </vs-col>
+  </form>
+  <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="6" style="padding-top:16px">
+    <vs-button @click="random" vs-color="danger" vs-type="relief">Random</vs-button>
+  </vs-col>
+  <vs-col vs-type="flex" vs-justify="center" vs-w="12">
+    <ul>
+      <li style="list-style: none;" v-for="url in imageURL" :key=url>
+        <img  class="gif" :src="url"/>
+      </li>
+    </ul>
+
+  </vs-col>
 </div>
 </template>
 
