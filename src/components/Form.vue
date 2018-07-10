@@ -10,8 +10,10 @@
         </vs-button>
       </vs-col>
     </form>
-    <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="4" style="padding-top:14px" >
+    <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="4" style="padding-top:14px">
+      <div v-show="searched">
         <vs-input-number vs-color="#32cb00" vs-min="1" vs-max="20" v-model="numberOfGifs"/>
+      </div>
     </vs-col>
     <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="4" style="padding-top:16px">
       <vs-button @click="random" vs-color="danger" vs-type="relief">Random</vs-button>
@@ -48,6 +50,11 @@ export default {
           console.log(response);
           this.imageURL = response.data;
         });
+    }
+  },
+  computed: {
+    searched() {
+      return this.imageURL.length > 1;
     }
   },
 
