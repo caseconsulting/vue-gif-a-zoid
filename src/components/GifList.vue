@@ -2,8 +2,10 @@
   <div id="gif-list">
 
       <ul>
-        <li style="list-style: none;" v-for="url in filteredResults()" :key="url">
-          <img  class="gif" :src="url"/>
+        <li style="list-style: none;" v-for="url in filterGifList()" :key="url.number">
+          <img  class="gif" :src="url.url"/>
+          <p v-show="url.url">{{ url.number }}</p>
+          <br/>
         </li>
       </ul>
   </div>
@@ -11,9 +13,17 @@
 <script>
 export default {
   props: ["numberOfGifs", "imageURL"],
+
   methods: {
-    filteredResults() {
-      return this.imageURL.slice(0, this.numberOfGifs);
+    filterGifList() {
+      let selectedArray = this.imageURL.slice(0, this.numberOfGifs);
+      for (var i = 0; i < this.numberOfGifs; i++) {
+        selectedArray[i] = {
+          url: selectedArray[i],
+          number: i + 1
+        };
+      }
+      return selectedArray;
     }
   }
 };
